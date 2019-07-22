@@ -1,15 +1,14 @@
-import login_Reducer from './login';
-import register_Reducer from './Register';
-import item_Reducer from './List_item';
-import PackagesReducer from './PackagesReducer'
-import account_Reducer from './account_Reducer'
 import { combineReducers } from 'redux';
-const rootReducer = combineReducers({
-    item_Reducer,
-  login_Reducer,
-  register_Reducer,
-  PackagesReducer,
-  account_Reducer
+import packages_Reducer from './packages'
+import users_Reducer from './users'
+import payment_Reducer from './payment'
+import signIn_Reducer from './signIn'
+import signUp_Reducer from './signUp'
+const rootReducer= combineReducers({
+    packages_Reducer,
+    users_Reducer,
+    payment_Reducer,
+    signIn_Reducer,
+    signUp_Reducer
 });
-
-export default rootReducer;
+export default rootReducer

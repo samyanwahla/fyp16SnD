@@ -26,19 +26,11 @@ function createData(name, calories, fat, carbs, protein) {
 }
 
 const rows = [
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Donut', 452, 25.0, 51, 4.9),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Honeycomb', 408, 3.2, 87, 6.5),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Jelly Bean', 375, 0.0, 94, 0.0),
-  createData('KitKat', 518, 26.0, 65, 7.0),
-  createData('Lollipop', 392, 0.2, 98, 0.0),
-  createData('Marshmallow', 318, 0, 81, 2.0),
-  createData('Nougat', 360, 19.0, 9, 37.0),
-  createData('Oreo', 437, 18.0, 63, 4.0),
+  createData('Numan Arshad', 'numanuet311@gmail.com', '03086415241', 'Sale Agent','Uet'),
+  createData('Numan Arshad', 'numanuet311@gmail.com', '03086415241', 'Customer','Uet'),
+  createData('Numan Arshad', 'numanuet311@gmail.com', '03086415241', 'Sale Agent','Uet'),
+  createData('Ali', 'numanuet311@gmail.com', '03086415241', 'Sale Agent','Uet'),
+  createData('Ahmad Hassan', 'numanuet311@gmail.com', '03086415241', 'Sale Agent','Uet'),
 ];
 
 function desc(a, b, orderBy) {
@@ -66,12 +58,14 @@ function getSorting(order, orderBy) {
 }
 
 const headRows = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
-  { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
-  { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
-  { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-  { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
+  { label: ' Name', numeric: false, disablePadding: true, id: 'Numan' },
+  //  { label: 'Last Name', numeric: true, disablePadding: false, id: 'Arshad' },
+  { label: 'Email', numeric: true, disablePadding: false, id: 'numanuet311@gmail.com' },
+  { label: 'Contact', numeric: true, disablePadding: false, id: '03086415241' },
+  { label: 'Role', numeric: true, disablePadding: false, id: 'Sales Agent' },
+  { label: 'Address', numeric: true, disablePadding: false, id: 'Uet lahore' }
 ];
+
 
 function EnhancedTableHead(props) {
   const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
@@ -210,7 +204,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ShowUsers() {
+export default function AllUsers() {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -273,7 +267,8 @@ export default function ShowUsers() {
 
   return (
     <div className={classes.root}>
-      <Dashboard />
+    {window.location.pathname=='/'?<Dashboard />:null}
+      
     <Button variant="contained" color="primary" 
     
     style={{paddingTop:20,paddingBottom:20,marginLeft:20,cursor:'default'}}>Show Users</Button>

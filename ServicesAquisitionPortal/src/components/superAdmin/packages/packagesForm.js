@@ -60,28 +60,33 @@ return (
    <Grid container item lg={8} md={12} sm={12} xs={12}  alignItems="center"
    >
  <Grid item lg={6} md={6}  sm={12}  xs={12} >
-      <FormControl style={{width:250,marginTop:16}} >
+      {/* <FormControl style={{width:250,marginTop:16}} >
      
-          <Select     //  onChange={this.handleChange('category')}
+          <Select   
           onChange={(event)=>setvalue(event.target.value)}
             value={Value} >
               <MenuItem value='select package'><em>--Select--</em></MenuItem>
               <MenuItem value='basic'>basic</MenuItem>
               <MenuItem value='gold'>gold</MenuItem>
               <MenuItem value='premium'>premium</MenuItem>
-                    {/* {this.state.allFlights.map((flight) => {
-                      return <MenuItem value={flight}>{flight}</MenuItem>
-                    })} */}
+                   
           </Select>
         
-        </FormControl>
+        </FormControl> */}
+            <TextField style={{width:250}}
+        id="standard-with-placeholder"
+        label="Package Price"
+      //  placeholder="P"
+        className={classes.textField}
+       
+      />
         </Grid>
        
         <Grid item lg={6} md={6}  sm={12}  xs={12} >
         <TextField style={{width:250}}
         id="standard-with-placeholder"
-        label="With placeholder"
-        placeholder="Placeholder"
+        label="Package Price"
+      //  placeholder="P"
         className={classes.textField}
        
       />

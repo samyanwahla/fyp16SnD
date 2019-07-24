@@ -1,7 +1,8 @@
 export const  Packages_Action={
     NEW:"NEW",
     SHOW:"SHOW_PACKAGES",
-   
+     LOADNEW:"LOAD_NEW",
+     LOADSHOW:"LOAD_SHOW",
     SUCCESS:"SUCCESS",
     FAILED:"FAILED"
 }

@@ -16,7 +16,7 @@ import Container from '@material-ui/core/Container';
 import Dashboard from '../dashboard/dashboard'
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
-
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 const useStyles = makeStyles(theme => ({
 	'@global': {
@@ -106,10 +106,13 @@ class ShowPackages extends React.Component {
 		const classes = { useStyles };
 		return (
 			<React.Fragment>
-				<Dashboard />
+				<CssBaseline />
+				{window.location.pathname==='/pricing'?null:<Dashboard />}
+				
 					{/* <Button onClick={()=>this.props.createPackage()}>create package</Button> */}
 				<Container maxWidth="sm" component="main" className={classes.heroContent}>
-					<Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+					<Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom
+					id="packages">
 						Pricing
 					</Typography>
 					<Typography variant="h5" align="center" color="textSecondary" component="p">

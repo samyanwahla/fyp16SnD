@@ -16,12 +16,34 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-
+import {connect} from 'react-redux'
+import ListSubheader from '@material-ui/core/ListSubheader';
 import {withRouter} from 'react-router-dom'
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+
+import Collapse from '@material-ui/core/Collapse';
+import Grid from '@material-ui/core/Grid';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import SendIcon from '@material-ui/icons/Send';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import StarBorder from '@material-ui/icons/StarBorder';
+import NestedList from './DropDownMenu'
+import withWidth from '@material-ui/core/withWidth';
 //import CreatePackage from '../packages/createPackage.js';
 //import ShowPackage from '../packages/showPackage.js';
 //import EnhancedTableHead from './showUsers.js';
-import CreateUser from '../users/createUsers';
+import {Users_Action,Users_Status} from '../../../constants/usersActions'
+const mapStateToProps=state=>({
+	users_Status:state.users_Reducer.users_status
+	})
+const mapDipatchToProps=dispatch=>({
+	LoadNewUser:()=>{dispatch({type:Users_Action.LOADNEW})},
+	LoadShowUser:()=>{dispatch({type:Users_Action.LOADSHOW})},
+	LoadNewRole:()=>{dispatch({type:Users_Action.LOADNEWRole})},
+	LoadShowRole:()=>{dispatch({type:Users_Action.LOADSHOWROLE})}
+})
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -54,11 +76,28 @@ const useStyles = makeStyles(theme => ({
 		flexGrow: 1,
 		padding: theme.spacing(3),
 	},
+
+	///drawer classes
+	drawerRoot: {
+		paddingTop:60,
+		width: '100%',
+		maxWidth: 240,
+		overflowY:'hidden',
+		paddingBottom:'170%',
+		backgroundColor: 'red'//theme.palette.background.paper,
+	  },
+	  nested: {
+		paddingLeft: theme.spacing(4),
+	  },
 }));
 
-export default function DashboardDis(props) {
+ function DashboardDis(props) {
 	const { container, getScreen } = props;
-	const [item, setItem] = useState('');
+	const [open, setOpen] = React.useState(false);
+const [headerMargin,setMargin]=useState(80)
+	function handleClick() {
+	  setOpen(!open);
+	}
 
 	const classes = useStyles();
 	const theme = useTheme();
@@ -71,83 +110,236 @@ export default function DashboardDis(props) {
 
 	//selectItem is state which is setState on clicking ListItem
 	const showMe = (text) => {
-		// if (selectItem === 'Dashboard') {
-		// 	return <div>Not Yet!</div>;
-		// } else if (selectItem == 'Users Management') {
-		// 	return (
-		// 		<div>
-		// 			<CreateUser />
-		// 		</div>
-		// 	);
-		// } else if (selectItem === 'ViewUser') {
-		// 	return <div>not yet</div>;
-		// } else if (selectItem === 'AgentManagement') {
-		// 	return <div>ot ye</div>;
-		// }
-		alert(item)
+	
+	
+
 		switch(text){
 			case 'Dashboard':
 			return(props.history.push('/distributor/snd/dashboard')); 
 			case 'CreateUser':
-			//setItem('Users Management')
-			return(props.history.push('/distributor/snd/users/createUser'))
+       props.LoadNewUser();
+		return(props.history.push('/distributor/snd/users/User'))
+
 			case 'ViewUser':
-			//setItem('Users Management')
-			return(props.history.push('/distributor/snd/users/showUser'));
+			props.LoadShowUser();
+			return(props.history.push('/distributor/snd/users/User'));
 			case 'UserNotification':return(props.history.push('/admin/snd/Users'))
 			
 		}
 	};
+
+
+	const header=(
+	   <AppBar position="static">
+        <Toolbar variant="dense">
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" color="inherit">
+            Photos
+          </Typography>
+        </Toolbar>
+      </AppBar>
+    );
+
+	
 	const drawer = (
-		<div>
-			<div className={classes.toolbar} />
-			<Divider />
-			<List>
-				{['Dashboard', 'CreateUser', 'ViewUser', 'AgentManagement'].map((text, index) => (
-					<ListItem
-						onClick={() => {
-							showMe(text);
-						}}
-						button
-						key={text}
-					>
-						<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-						<ListItemText primary={text} />
-					</ListItem>
-				))}
-			</List>
-			<Divider />
-			<List>
-				{['Profile', 'Change Password', 'Sign Out'].map((text, index) => (
-					<ListItem button key={text}>
-						<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-						<ListItemText primary={text} />
-					</ListItem>
-				))}
-			</List>
-		</div>
+		// <div>
+		// 	<div className={classes.toolbar} />
+		// 	<Divider />
+		// 	<List>
+		// 		{['Dashboard', 'CreateUser', 'ViewUser', 'AgentManagement'].map((text, index) => (
+		// 			<ListItem
+		// 				onClick={() => {
+		// 					showMe(text);
+						
+		// 				}}
+		// 				button
+		// 				key={text}
+		// 			>
+		// 				<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+		// 				<ListItemText primary={text} />
+		// 			</ListItem>
+		// 		))}
+		// 	</List>
+		// 	<Divider />
+		// 	<List>
+		// 		{['Profile', 'Change Password', 'Sign Out'].map((text, index) => (
+		// 			<ListItem button key={text}>
+		// 				<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+		// 				<ListItemText primary={text} />
+		// 			</ListItem>
+		// 		))}
+		// 	</List>
+		// </div>
+		<List  	style={{backgroundColor:'#212121',color:'white'}}
+		component="nav"
+		aria-labelledby="nested-list-subheader"
+		// subheader={
+		//   <ListSubheader component="div" id="nested-list-subheader">
+		// 	Nested List Items
+		//   </ListSubheader>
+		// }
+		className={classes.drawerRoot}
+	  >
+		<ListItem button onClick={()=>props.history.push('/distributor/snd/dashboard')}>
+		  <ListItemIcon>
+			<SendIcon style={{color:'white'}} />
+		  </ListItemIcon>
+		  <ListItemText primary="Dashboard" />
+		</ListItem>
+	  
+		<ListItem button onClick={handleClick} 
+	>
+		  <ListItemIcon>
+			<InboxIcon style={{color:'white'}}/>
+		  </ListItemIcon>
+		  <ListItemText primary="Manage Roles" />
+		  {open ? <ExpandMore /> : <ExpandLess />}
+		</ListItem>
+		<Collapse in={open} timeout="auto" unmountOnExit>
+		  <List component="div" disablePadding>
+			<ListItem button className={classes.nested}
+	onClick={()=>{props.LoadNewRole();props.history.push('/distributor/snd/roles/createRole')}}>
+			  <ListItemIcon>
+				<StarBorder style={{color:'white'}}/>
+			  </ListItemIcon>
+			  <ListItemText primary="Create Roles" />
+			</ListItem>
+			<ListItem button className={classes.nested}
+			onClick={()=>
+	{props.LoadShowRole();props.history.push('/distributor/snd/roles/showRole')}}>
+			  <ListItemIcon>
+				<StarBorder style={{color:'white'}}/>
+			  </ListItemIcon>
+			  <ListItemText primary="Show Roles" />
+			</ListItem>
+		  </List>
+		</Collapse>
+
+		<ListItem button onClick={handleClick} 
+	>
+		  <ListItemIcon>
+			<InboxIcon style={{color:'white'}}/>
+		  </ListItemIcon>
+		  <ListItemText primary="Manage Users" />
+		  {open ? <ExpandMore /> : <ExpandLess />}
+		</ListItem>
+		<Collapse in={open} timeout="auto" unmountOnExit>
+		  <List component="div" disablePadding>
+			<ListItem button className={classes.nested}
+	onClick={()=>{props.LoadNewUser();props.history.push('/distributor/snd/users/User')}}>
+			  <ListItemIcon>
+				<StarBorder style={{color:'white'}}/>
+			  </ListItemIcon>
+			  <ListItemText primary="Create User" />
+			</ListItem>
+			<ListItem button className={classes.nested}
+			onClick={()=>
+	{props.LoadShowUser();props.history.push('/distributor/snd/users/User')}}>
+			  <ListItemIcon>
+				<StarBorder style={{color:'white'}}/>
+			  </ListItemIcon>
+			  <ListItemText primary="Show User" />
+			</ListItem>
+		  </List>
+		</Collapse>
+		<ListItem button>
+		  <ListItemIcon>
+			<DraftsIcon style={{color:'white'}}/>
+		  </ListItemIcon>
+		  <ListItemText primary="Agent Management" />
+		</ListItem>
+	  
+	  </List>
 	);
 
 	return (
 		<div className={classes.root}>
 			<CssBaseline />
-			<AppBar position="fixed" className={classes.appBar}>
+			<AppBar position="fixed" className={classes.appBar} style={{backgroundColor:'white',color:'grey'}}>
 				<Toolbar>
 					<IconButton
 						color="inherit"
 						aria-label="Open drawer"
 						edge="start"
 						onClick={handleDrawerToggle}
-						className={classes.menuButton}
-					>
+						className={classes.menuButton}>
 						<MenuIcon />
 					</IconButton>
 					<Typography variant="h6" noWrap>
-						S&D
+						Sales & distribution 
+						{/* width is {props.width} */}
 					</Typography>
 				</Toolbar>
 			</AppBar>
-			<nav className={classes.drawer} aria-label="Mailbox folders">
+
+			<AppBar  style={{marginTop:props.width==='xs'?headerMargin-10:headerMargin,
+			paddingTop:3,paddingBottom:3,backgroundColor:'#f5f5f5',color:'#2e7d32'}} className={classes.appBar}
+		elevation={1}>
+				<Toolbar variant="dense">
+			<div>
+				
+      {(() => {
+					if(window.location.pathname==='/distributor/snd/dashboard'){
+						return <Typography  variant="h6">Dashboard</Typography>
+					}
+				else	if(window.location.pathname==='/distributor/snd/roles/createRole'){
+						return <Typography  variant="h6">Create Role</Typography>
+					}
+					else if(window.location.pathname==='/distributor/snd/roles/showRole'){
+						
+						return <Grid  container direction="row" spacing={2} justify='flex-start'
+						alignItems="center">
+						<Grid item><Typography  variant="h6"  >Show Role</Typography> </Grid>
+						<Grid item> <Fab style={{backgroundColor:'#2e7d32',color:'white'}} size="small" className={classes.fab}
+						onClick={()=>
+						{props.LoadNewRole();props.history.push('/distributor/snd/roles/createRole')
+						}
+						}>
+						<AddIcon />
+					</Fab></Grid></Grid>
+					}
+					else if(props.users_Status===Users_Status.NEW){
+					 
+					 	return <Typography  variant="h6">New User</Typography>
+					 }
+					 else if(props.users_Status===Users_Status.SHOW){
+					 
+						return <Grid  container direction="row" spacing={2} justify='flex-start'
+						alignItems="center">
+						<Grid item><Typography  variant="h6"  >Show User</Typography> </Grid>
+						<Grid item> <Fab  style={{backgroundColor:'#2e7d32',color:'white'}}  size="small" className={classes.fab}
+							onClick={()=>
+								{props.LoadNewUser();props.history.push('/distributor/snd/users/User')
+								}
+								}>
+						<AddIcon />
+					</Fab></Grid></Grid>
+					}
+
+			})()}
+			
+
+    </div>
+					
+					
+				</Toolbar>
+			</AppBar>
+
+			{/* <AppBar position="fixed" className={classes.appBar}
+			color="default" style={{marginTop:70}}
+			elevation={1}>
+				<Toolbar>
+					
+					<Typography variant="h6" Wrap>
+						S&D
+					</Typography>
+				</Toolbar>
+			</AppBar> */}
+			<nav className={classes.drawer} 
+		
+			aria-label="Mailbox folders">
 				{/* The implementation can be swapped with js to avoid SEO duplication of links. */}
 				<Hidden smUp implementation="css">
 					<Drawer
@@ -163,18 +355,16 @@ export default function DashboardDis(props) {
 							keepMounted: true, // Better open performance on mobile.
 						}}
 					>
-						{drawer}
+					{/* <NestedList /> */}
+					 {drawer}
 					</Drawer>
 				</Hidden>
 				<Hidden xsDown implementation="css">
-					<Drawer
-						classes={{
-							paper: classes.drawerPaper,
-						}}
+					<Drawer classes={{paper: classes.drawerPaper,}}
 						variant="permanent"
-						open
-					>
-						{drawer}
+						open  >
+						{/* <NestedList /> */}
+						 {drawer} 
 					</Drawer>
 				</Hidden>
 			</nav>
@@ -216,4 +406,4 @@ DashboardDis.propTypes = {
 	container: PropTypes.object,
 };
 
-withRouter(DashboardDis)
+export default connect(mapStateToProps,mapDipatchToProps)(withRouter(withWidth()(DashboardDis)))

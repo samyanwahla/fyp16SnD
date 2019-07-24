@@ -125,7 +125,8 @@ export default function Home() {
 						</Typography>
 					</Grid>
 					<Grid item lg={3} style={{ alignItems: 'center' }} alignContent="center">
-						<Button variant="contained" color="primary">
+						<Button variant="contained" color="primary"
+						href="#packages">
 							Packages
 						</Button>
 					</Grid>

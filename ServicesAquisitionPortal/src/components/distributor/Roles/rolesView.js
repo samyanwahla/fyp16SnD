@@ -1,8 +1,8 @@
 import React,{Component} from 'react'
 import {Users_Action,Users_Status} from '../../../constants/usersActions'
 
-import ShowUsers from './showUsers'
-import CreateUser from './createUsers'
+import CreateRole from './createRole'
+import ShowRole from './showRoles'
 import { connect } from 'react-redux';
 import DashboardDis from '../dashboard/dashboard'
 const mapStateToProps=state=>({
@@ -10,12 +10,12 @@ users_Status:state.users_Reducer.users_status
 })
 const mapDispatchToProps=(dispatch)=>{
     return{
-        createUser:()=>{dispatch({type:Users_Action.NEW})},
-        showUser:()=>{dispatch({type:Users_Action.SHOW})},
+        createRole:()=>{dispatch({type:Users_Action.NEWRole})},
+        showRole:()=>{dispatch({type:Users_Action.SHOWROLE})},
 
     }
 }
-class UsersView extends React.Component{
+class RolesView extends React.Component{
 constructor(props){
     super(props);
     
@@ -25,10 +25,10 @@ constructor(props){
 
 getScreen(status){
     switch (status) {
-        case Users_Status.SHOW:
-       return     <ShowUsers createUser={this.props.createUser} />
-       case Users_Status.NEW:
-       return     <CreateUser showUser={this.props.showUser} />
+        case Users_Status.NEWRole:
+       return     <CreateRole  showRole={this.props.showRole} />
+       case Users_Status.SHOWROLE:
+       return     <ShowRole createRole={this.props.createRole} />
     default:
         
     }
@@ -39,4 +39,4 @@ render(){
 }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(UsersView)
+export default connect(mapStateToProps,mapDispatchToProps)(RolesView)

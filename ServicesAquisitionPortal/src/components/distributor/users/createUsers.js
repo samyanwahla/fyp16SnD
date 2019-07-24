@@ -9,11 +9,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
 import TextField from '@material-ui/core/TextField';
-
+import { Link,withRouter } from 'react-router-dom';
 const useStyles = makeStyles(theme => ({
 	root: {
-		padding: theme.spacing(7, 7),
-		marginTop: -40,
+		padding: theme.spacing(7, 7,4,7),
+		marginTop: 60,
 	},
 	textField: {
 		marginLeft: theme.spacing(1),
@@ -26,19 +26,19 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-export default function CreateUser(props) {
+ function CreateUser(props) {
 	const classes = useStyles();
 	//const [item, selectItem] = useState('');
 	return (
 		<div>
-			<Button
+			{/* <Button
 				variant="contained"
 				color="primary"
 				style={{ paddingTop: 20, paddingBottom: 20, marginLeft: 20, cursor: 'default' }}
 			>
 				User Form
-			</Button>
-			<Paper className={classes.root}>
+			</Button> */}
+			<Paper className={classes.root} >
 				<Grid container spacing={3}>
 					<Grid item md={6} sm={12} xs={12}>
 						<TextField fullWidth label="FirstName (Required)" className={classes.textField} />
@@ -59,9 +59,9 @@ export default function CreateUser(props) {
 							<MenuItem value="select package">
 								<em>--Select--</em>
 							</MenuItem>
-							<MenuItem value="basic">basic</MenuItem>
-							<MenuItem value="gold">gold</MenuItem>
-							<MenuItem value="premium">premium</MenuItem>
+							<MenuItem value="SalesAgent">SalesAgent</MenuItem>
+							<MenuItem value="Customer">Customer</MenuItem>
+							{/* <MenuItem value="premium">premium</MenuItem> */}
 						</Select>
 					</Grid>
 
@@ -69,14 +69,34 @@ export default function CreateUser(props) {
 						<TextField fullWidth label="Address (Required)" className={classes.textField} />
 					</Grid>
 				</Grid>
-				<br /> <br />
-				<center>
-					<Button alignItems="center" variant="contained" color="primary">
-						{' '}
-						Save{' '}
+				<br /> 	<br /> 
+					<Grid container spacing={2} justify="flex-start">
+					<Grid item>
+				<Button alignItems="center" variant="contained" color="default"
+				onClick={()=>props.showUser()}>
+				
+					Cancel
+				
+				</Button></Grid>
+				<Grid item>
+				<Button alignItems="center" variant="contained" color="secondary"
+					onClick={()=>props.showUser()}>
+					
+						Save as New
 					</Button>
-				</center>
+					</Grid>
+					<Grid item>
+						<Button alignItems="center" variant="contained" color="primary"
+							onClick={()=>props.showUser()}>
+					
+						Save
+					</Button>
+					</Grid>
+					</Grid>
+				
 			</Paper>
 		</div>
 	);
 }
+
+export default withRouter(CreateUser)

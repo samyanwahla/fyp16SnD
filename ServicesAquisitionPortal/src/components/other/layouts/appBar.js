@@ -15,7 +15,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
-
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 const useStyles = makeStyles(theme => ({
 	'@global': {
 		body: {
@@ -48,6 +49,9 @@ const useStyles = makeStyles(theme => ({
 	cardHeader: {
 		backgroundColor: theme.palette.grey[200],
 	},
+	menuButton: {
+		marginRight: theme.spacing(2),
+	  },
 	navlink: {
 		'text-decoration': 'none',
 	},
@@ -74,28 +78,42 @@ export default function SimpleAppBar() {
 
 	return (
 		<React.Fragment>
-			<AppBar position="static" color="default" elevation={0} className={classes.appBar}>
-				<Toolbar className={classes.toolbar}>
+			<AppBar position="static" 
+			style={{backgroundColor:'#212121',color:'white'}} elevation={0} className={classes.appBar}>
+				{/* <Toolbar className={classes.toolbar}>
 					<Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
 						Sales and Distribution
 					</Typography>
 					<nav>
-						<Link variant="button" color="textPrimary" href="#" className={classes.link}>
+						<Link variant="button" color="white" href="#" className={classes.link}>
 							Features
 						</Link>
-						<Link variant="button" color="textPrimary" href="#" className={classes.link}>
+						<Link variant="button" color="textPrimary" to="/contact" href="#" className={classes.link}>
 							Pricing
 						</Link>
-						<Link variant="button" color="textPrimary" href="#" className={classes.link}>
+						<Link variant="button" color="textPrimary" to="/contact" className={classes.link}>
 							Contact Us
 						</Link>
 					</nav>
 					<Button href="#" color="primary" variant="outlined" className={classes.link}>
-						<Link to="/sigin" className={classes.navlink}>
+						<Link to="/distributor/snd/dashboard" className={classes.navlink}>
 							Sign In
 						</Link>
 					</Button>
-				</Toolbar>
+				</Toolbar> */}
+				   <Toolbar>
+          {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu">
+            <MenuIcon />
+          </IconButton> */}
+          <Typography variant="h6" style={{ flexGrow: 1,}}>
+            Sales & Distribution
+          </Typography>
+		  <Button color="inherit" style={{textTransform:'capitalize'}} href="/features">Features</Button>
+		  <Button color="inherit" style={{textTransform:'capitalize'}} href="/pricing">Pricing</Button>
+		  <Button color="inherit" style={{textTransform:'capitalize'}} href="/contact">Contact Us</Button>
+          <Button color="inherit" style={{textTransform:'capitalize'}}
+		  href="/distributor/snd/dashboard">Login</Button>
+        </Toolbar>
 			</AppBar>
 		</React.Fragment>
 	);

@@ -228,7 +228,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
- function ShowUsers(props) {
+ function ShowRole(props) {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -343,7 +343,7 @@ const useStyles = makeStyles(theme => ({
                       <TableCell align="right">{row.protein}</TableCell>
                       <TableCell align="right" onClick={
       ()=>{
-        props.createUser()//;props.history.push('/distributor/snd/users/User')
+        props.createRole();props.history.push('/distributor/snd/roles/createRole')
       }
     }>{row.icon}</TableCell>
                     </TableRow>
@@ -381,4 +381,4 @@ const useStyles = makeStyles(theme => ({
     </div>
   );
 }
-export default withRouter(ShowUsers)
+export default withRouter(ShowRole)

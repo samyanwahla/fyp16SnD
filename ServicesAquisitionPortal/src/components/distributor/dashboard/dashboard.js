@@ -17,11 +17,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {connect} from 'react-redux'
+import CustomizedMenus from '../../superAdmin/dashboard/Menus'
 import ListSubheader from '@material-ui/core/ListSubheader';
 import {withRouter} from 'react-router-dom'
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-
+import ChartContainer from '../../other/dashboard-charts/chartsContainer'
 import Collapse from '@material-ui/core/Collapse';
 import Grid from '@material-ui/core/Grid';
 import DraftsIcon from '@material-ui/icons/Drafts';
@@ -267,10 +268,11 @@ const [headerMargin,setMargin]=useState(80)
 						className={classes.menuButton}>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" noWrap>
+					<Typography variant="h6" noWrap style={{flexGrow:1}}>
 						Sales & distribution 
 						{/* width is {props.width} */}
 					</Typography>
+					<CustomizedMenus />
 				</Toolbar>
 			</AppBar>
 
@@ -393,7 +395,7 @@ const [headerMargin,setMargin]=useState(80)
           nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
           accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>  */}
-				{getScreen}
+	{window.location.pathname==='/distributor/snd/dashboard'?<ChartContainer />:	getScreen}
 				{/* {showMe()} */}
 			</main>
 		</div>

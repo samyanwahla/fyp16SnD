@@ -118,14 +118,14 @@ export default function Home() {
 						<Typography align="center" variant="h1" className={classes.imgText}>
 							<i>
 								{' '}
-								Digitilize your business through <i style={{ color: 'orange' }}>Sales</i>
+								Digitilize your business through <i style={{ color: '#1b5e20' }}>Sales</i>
 								<br />
-								and <i style={{ color: 'orange' }}>Distribution</i>
+								and <i style={{ color: '#1b5e20' }}>Distribution</i>
 							</i>
 						</Typography>
 					</Grid>
 					<Grid item lg={3} style={{ alignItems: 'center' }} alignContent="center">
-						<Button variant="contained" color="primary"
+						<Button variant="contained" size='large' style={{backgroundColor:'#1b5e20',color:'white'}}
 						href="#packages">
 							Packages
 						</Button>

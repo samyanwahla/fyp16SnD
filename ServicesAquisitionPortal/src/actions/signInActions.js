@@ -1,16 +1,16 @@
 import store from '../store'
-export function login(username,password){
+export const login=(username,password)=>dispatch=>{
    
-    var user ={'Username':username,'Password':password}
-    alert(user.Username)
-    const postRequest =  fetch('https://localhost:44307/api/Auth/login', {
+    var user ={'username':username,'password':password}
+    alert(user.username)
+    const postRequest =  fetch('https://localhost:5001/api/Auth/login', {
           method: 'POST',
-          headers: {'Content-Type':'application/json;charset=UTF-8'},
+        headers: {'Content-Type':'application/json;charset=UTF-8'},
            mode: 'cors',
-          body: JSON.stringify(user)
+        body:JSON.stringify(user)
      }).then((response)=>{
-      
-    alert('********'+response.responseCode);
+      console.log(response.status)
+    alert('********'+response.statusText);
       response.json().then(data=>{
             //alert(data.userId);
         alert("data:......" + data.signInStatus )

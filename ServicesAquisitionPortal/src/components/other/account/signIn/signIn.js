@@ -58,7 +58,7 @@ function SignIn(props) {
 						Sign in  {user.username}
 						{user.password}
 					</Typography>
-					<form className={classes.form}>
+					<div className={classes.form}>
 						<TextField
 							variant="outlined"
 							margin="normal"
@@ -90,8 +90,8 @@ function SignIn(props) {
 							variant="contained"
 							color="primary"
 							className={classes.submit}
-							onClick={() => props.history.push('/admin/snd/dashboard')}
-					//	onClick={() => props.handleLogin(user.username,user.password)}
+						//	onClick={() => props.history.push('/admin/snd/dashboard')}
+						onClick={() => props.handleLogin(user.username,user.password)}
 						>
 							Sign In
 						</Button>
@@ -108,12 +108,12 @@ lwkh</button>
 								</Link>
 							</Grid>
 							<Grid item>
-								<button onClick={() => props.handleShowSignup()}>
+								<Link onClick={() => props.handleShowSignup()}>
 									{"Don't have an account? Sign Up"}
-								</button>
+								</Link>
 							</Grid>
 						</Grid>
-					</form>
+					</div>
 				</div>
 			</Grid>
 		</Grid>

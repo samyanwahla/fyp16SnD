@@ -100,13 +100,17 @@ const renderMenu = (
 
 
 return (
-    <div className={classes.grow}>
+    <div>
 	
-    <AppBar position="fixed">
-        <Toolbar>
+    <AppBar position="fixed"
+    className={props.appBar}>
+        <Toolbar //className={props.menuButton}
+        >
+        
+        
         <IconButton
             edge="start"
-            className={classes.menuButton}
+            className={props.menuButton}
             color="inherit"
             aria-label="Open drawer"
             onClick={props.handleDrawerToggle}
@@ -117,14 +121,11 @@ return (
         variant="h6" noWrap>
             Sales&Distribution
         </Typography>
-        <Button variant="primary" className={classes.title}  
-    style={{color:'white',textTransform:'capitalize',fontSize:18}}
-    onClick={()=>props.history.push('/admin/snd/dashboard')}>Dashboard</Button>
+      
 	
         <CustomizedMenus classTitle={classes.title}/>
-        <Button variant="primary" className={classes.title}  
-        style={{color:'white',textTransform:'capitalize',fontSize:18}}
-    onClick={()=>props.history.push('/admin/snd/Users')}>Users</Button>
+       
+    
         <div className={classes.grow} />
         <div className={classes.sectionDesktop}>
           

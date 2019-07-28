@@ -5,7 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
-
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Grid from '@material-ui/core/Grid';
 import StarIcon from '@material-ui/icons/StarBorder';
 
@@ -162,15 +162,22 @@ class ShowPackages extends React.Component {
 									{/* <Grid align='center' style={{paddingTop:15}}> */}
 									<CardActions >
 										
-										<Button style={{borderRadius:'9px',color:"white",backgroundColor:tier.colorr,padding:10,margin:10}}
+										{/* <Button style={{borderRadius:'9px',color:"white",backgroundColor:tier.colorr,padding:10,margin:10}}
 											fullWidth 
 											
-											/* variant={tier.buttonVariant} */
-											/* backgroundColor={tier.colorr} */
+										
 											onClick={() => this.props.history.push('/signupandpayment')}
-										>
-											{tier.buttonText}
-										</Button>
+										></Button> */}
+									{window.location.pathname==='/admin/snd/packages'?<ButtonGroup fullWidth
+									alignItems='center' style={{backgroundColor:tier.colorr,margin:10}} >
+										<Button style={{color:'white'}}
+										onClick={()=>this.props.createPackage()}>Edit</Button><Button style={{color:'white'}}>Delete</Button>
+									</ButtonGroup>:
+									<Button style={{borderRadius:'9px',color:"white",backgroundColor:tier.colorr,padding:10,margin:10}}
+									fullWidth onClick={() => this.props.history.push('/signupandpayment')}>
+									{tier.buttonText}
+									</Button>}		
+										
 										
 									</CardActions>
 									{/* </Grid> */}

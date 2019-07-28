@@ -32,8 +32,11 @@ const styles = theme => ({
     
   },
   marginn: {
-    margin: theme.spacing.unit,
-    width:100
+    //margin: theme.spacing.unit,
+    width:100,
+    marginLeft:'40%',
+    marginBottom:10
+    
   },
   bootstrapInput: {
     borderRadius: 4,
@@ -126,7 +129,8 @@ function Contact(props) {
 	  />
 	</FormControl>
 	
-	<Fab variant="extended" color="primary" aria-label="Add" className={classes.marginn}>Send</Fab>
+  <Fab variant="extended" color="primary" aria-label="Add" 
+   className={classes.marginn}>Send</Fab>
 	  </Grid>
 	  </Grid>
 	</Paper>

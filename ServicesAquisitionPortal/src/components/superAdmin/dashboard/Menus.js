@@ -7,7 +7,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { withRouter } from 'react-router-dom';
+import IconButton from '@material-ui/core/IconButton';
 const StyledMenu = withStyles({
   paper: {
     border: '1px solid #d3d4d5',
@@ -52,12 +54,15 @@ const StyledMenuItem = withStyles(theme => ({
 
   return (
     <div>
-      <Button style={{color:'white',textTransform:'capitalize',fontSize:18}}
-    className={props.classTitle}
-        onClick={handleClick}
-      >
-        Packages
-      </Button>
+      	<IconButton
+						color="inherit"
+						aria-label="Open drawer"
+						edge="end"
+						onClick={handleClick}
+					
+					>
+						<KeyboardArrowDownIcon />
+					</IconButton>
       <StyledMenu
         id="customized-menu"
         anchorEl={anchorEl}
@@ -69,13 +74,15 @@ const StyledMenuItem = withStyles(theme => ({
           {/* <ListItemIcon>
             <SendIcon />
           </ListItemIcon> */}
-          <ListItemText primary="Show Packages" onClick={()=>props.history.push('/admin/snd/packages/showPackage')}></ListItemText>
+          <ListItemText primary="My Account" onClick={()=>props.history.push('/admin/snd/packages/showPackage')}></ListItemText>
         </StyledMenuItem>
         <StyledMenuItem>
           {/* <ListItemIcon>
             <DraftsIcon />
           </ListItemIcon> */}
-          <ListItemText primary="Create Package" onClick={()=>props.history.push('/admin/snd/packages/createPackage')}/>
+          <ListItemText primary="Logout" onClick={()=>
+            {window.location.pathname==='/admin/snd/dashboard'?props.history.push('/admin/sigin'):
+            props.history.push('/')}}/>
         </StyledMenuItem>
         {/* <StyledMenuItem>
           <ListItemIcon>

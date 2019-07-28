@@ -17,6 +17,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
+import DrawerAppbar from './drawerNav'
 import {Packages_Action,Packages_Status} from '../../../constants/packagesActions'
 import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
@@ -29,6 +30,9 @@ import {connect} from 'react-redux'
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Grid from '@material-ui/core/Grid';
+import ChartsContainer from '../../dashboard-charts/chartsContainer'
+import CustomizedMenus from './Menus'
+import ChartsGrid from '../../dashboard-charts/chartsGrid'
 //////////////////
 
 
@@ -88,12 +92,23 @@ const useStyles = makeStyles(theme => ({
 		flexGrow: 1,
 		padding: theme.spacing(0,3,3,3),
 	},
+	clickText:{
+		 color:'white',
+		 '&:active': {
+			color:'green'
+	 	},
+		 '&:focus': {
+			color:'green'
+		 },
+		 
+	 }
 }));
 
  function Dashboard(props) {
 	const { container, getScreen } = props;
 	const [open, setOpen] = React.useState(false);
 	const [headerMargin,setMargin]=useState(80)
+	const [txtColor,setColor]=useState({active:'green',Dective:'white'})
 	function handleClick() {
 	  setOpen(!open);
 	}
@@ -165,7 +180,9 @@ const useStyles = makeStyles(theme => ({
 		// }
 		className={classes.drawerRoot}
 	  >
-		<ListItem button onClick={()=>props.history.push('/admin/snd/dashboard')}>
+		<ListItem button onClick={()=>props.history.push('/admin/snd/dashboard')}
+		//className={classes.clickText} 
+		 >
 		  <ListItemIcon>
 			<SendIcon style={{color:'white'}}/>
 		  </ListItemIcon>
@@ -227,9 +244,11 @@ const useStyles = makeStyles(theme => ({
 	return (
 		<div className={classes.root}>
 			<CssBaseline />
-			{window.location.pathname!=='/'?	<AppBar position="fixed" 
+			{window.location.pathname!=='/'?
+			
+				<AppBar position="fixed"  
 			className={classes.appBar} style={{backgroundColor:'white',color:'grey'}}>
-				<Toolbar>
+				<Toolbar >
 					<IconButton
 						color="inherit"
 						aria-label="Open drawer"
@@ -239,9 +258,19 @@ const useStyles = makeStyles(theme => ({
 					>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" noWrap>
+					<Typography variant="h6" noWrap style={{flexGrow:1}}>
 						Sales  & Distribution
 					</Typography>
+					{/* <IconButton
+						color="inherit"
+						aria-label="Open drawer"
+						edge="end"
+						onClick={handleDrawerToggle}
+					
+					>
+					
+					</IconButton> */}
+						<CustomizedMenus />
 				</Toolbar>
 			</AppBar>
 			:null}
@@ -319,8 +348,8 @@ const useStyles = makeStyles(theme => ({
 		
 			<main className={classes.content}>
 				<div className={classes.toolbar} />
-	
-				{getScreen}
+	{window.location.pathname==='/admin/snd/dashboard'?<ChartsContainer />:	getScreen}
+			
 				{/* {showMe()} */}
 			</main>
 		</div>

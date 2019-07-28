@@ -102,20 +102,22 @@ const useStyles = makeStyles(theme => ({
 				
 				</Grid>
 				<br /> 	<br /> 
-					<Grid container spacing={2} justify="center">
-					{/* <Grid item>
-				<Button alignItems="center" variant="contained" color="default">
-					<Link to="">
-					Cancel
-					</Link>
-				</Button></Grid> */}
+					<Grid container spacing={2} justify='flex-start'>
+					<Grid item>
+				<Button alignItems="center" variant="contained" color="default"
+				onClick={()=>props.showPackage()}>
+					
+						Cancel
+					</Button>
+					</Grid>
 				<Grid item>
-				<Button alignItems="center" variant="contained" color="secondary">
+				<Button alignItems="center" variant="contained" color="secondary"
+				onClick={()=>props.showPackage()}>
 					
 						Save as New
 					</Button>
 					</Grid>
-					<Grid item>
+					<Grid item 	onClick={()=>props.showPackage()}>
 						<Button alignItems="center" variant="contained" color="primary">
 					
 						Save
